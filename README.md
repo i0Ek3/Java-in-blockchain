@@ -1,6 +1,6 @@
 # Java-in-blockchain
 
-Help you to comprehend how blockchains work, and to learn Java grammar quickly.
+The purpose of this project is help you to understand how a blockchain to work well, and to learn Java grammar quickly in code snippets.
 
 ## Credit
 
