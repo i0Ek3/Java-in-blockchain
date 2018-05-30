@@ -1,7 +1,8 @@
 # Java-in-blockchain
 
 
-The purpose of this project is help you to understand how a blockchain to work well, and to learn Java grammar quickly in code snippets. Additionally, the code of prototype in this project created by [@CryptoKass](https://github.com/CryptoKass), I just rewrite code by my understanding with some annotation. Be know!
+The purpose of this project is help you to understand how a blockchain to work well, and to learn Java grammar quickly in code snippets. Additionally, the code of prototype in this project created by [@CryptoKass](https://github.com/CryptoKass), I just rewrite code by my understanding with some annotation. Be known!
+
 
 ## Credit
 
