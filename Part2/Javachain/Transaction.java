@@ -1,59 +1,61 @@
 // 
-// Transcation.java
+// Transaction.java
 // @ianpasm(kno30826@gmail.com)
 // 2018-06-02 19:43:01
-// 
+//
+// I have a mistake for word transaction. All the time I think transaction is transaction.....
+//
  
 package javachain;
 import java.security.*;
 import java.util.ArrayList;
 
-public class Transcation {
+public class Transaction {
     
-    public String transcationId;
+    public String transactionId;
     public PublicKey sender, reciepient;
     public float value;
     public byte[] signature;
 
-    public ArrayList<TranscationInput> inputs = new ArrayList<TranscationInput>();
-    public ArrayList<TranscationOutput> inputs = new ArrayList<TranscationOutput>();
+    public ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
+    public ArrayList<TransactionOutput> inputs = new ArrayList<TransactionOutput>();
 
     private static int sequence = 0;
 
-    public Transcation(PublicKey from, PublicKey to, float value, ArrayList<TranscationInput> inputs) {
+    public Transaction(PublicKey from, PublicKey to, float value, ArrayList<TransactionInput> inputs) {
         this.sender = from;
         this.reciepient = to;
         this.value = value;
         this.inputs = inputs;
     }
     
-    public boolean processTranscation() {
+    public boolean processTransaction() {
 
         if (verifySignature() == false) {
             System.out.println("#Transacation Signature failed to verify!");
             return false;
         }
 
-        for (TranscationInput i : inputs) {
-            i.UTXO = Javachain.UTXOs.get(i.TranscationOutputId);
+        for (TransactionInput i : inputs) {
+            i.UTXO = Javachain.UTXOs.get(i.TransactionOutputId);
         }
 
-        if (getInputsValue() < Javachain.minimumTranscation) {
-            System.out.println("Transcation Inputs too small: " + getInputsValue());
-            System.out.println("Please enter the amount greater than " + Javachain.minimumTranscation);
+        if (getInputsValue() < Javachain.minimumTransaction) {
+            System.out.println("Transaction Inputs too small: " + getInputsValue());
+            System.out.println("Please enter the amount greater than " + Javachain.minimumTransaction);
             return false;
         }
 
         float leftOver = getInputsValue() - value;
-        transcationId = calculateHash();
-        outputs.add(new TranscationOutput(this.reciepient, value, transcationId));
-        outputs.add(new TranscationOutput(this.sender, leftOver, transcationId));
+        transactionId = calculateHash();
+        outputs.add(new TransactionOutput(this.reciepient, value, transactionId));
+        outputs.add(new TransactionOutput(this.sender, leftOver, transactionId));
     
-        for (TranscationOutput o : outputs) {
+        for (TransactionOutput o : outputs) {
             Javachain.UTXOs.put(o.id, o);
         }
 
-        for (TranscationInput i : inputs) {
+        for (TransactionInput i : inputs) {
             if (i.UTXO == null) {
                 continue;
             }
@@ -65,7 +67,7 @@ public class Transcation {
 
     public float getInputsValue() { 
         float total = 0;
-        for (TranscationInput i : inputs) {
+        for (TransactionInput i : inputs) {
             if (i.UTXO = null) {
                 continue;
             }
@@ -86,7 +88,7 @@ public class Transcation {
 
     public float getOutputsValue() {
         float total = 0;
-        for (TranscationOutput o : outputs) {
+        for (TransactionOutput o : outputs) {
             total += o.value;
         }
         return total;
