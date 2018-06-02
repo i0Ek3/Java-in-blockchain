@@ -3,7 +3,7 @@
 // @ianpasm(kno30826@gmail.com)
 // 2018-06-02 19:43:01
 //
-// I have a mistake for word transaction. All the time I think transaction is transaction.....
+// I have a mistake for word transaction. All the time I think transcation is transaction.....
 //
  
 package javachain;
