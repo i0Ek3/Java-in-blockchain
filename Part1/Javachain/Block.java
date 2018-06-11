@@ -5,19 +5,17 @@
 // 
  
 package javachain;
-
 import java.util.Date
 
 // class block
 public class Block { 
     
-    //declaration
     //block information
     public String hash;
     public String previousHash;
     private String data; //message? What means?
     private long timeStamp; //since 1970-01-01 
-    private int nonce; //amount to temp?? Just a temporary value?
+    private int nonce; //de-randomNumber in consensus process
     
     //block constructor, without decontructor function cause of Java has its own recycle machanism. 
     public Block(String data, String previousHash) {

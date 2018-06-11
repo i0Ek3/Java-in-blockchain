@@ -10,13 +10,12 @@ import com.google.gson.GsonBuilder;
 
 public class StringUtil {
 
-    //
+    //apply SHA256 to String
     public static String applySha256(String input){
-
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
-            //
+            
+            //byte[] is an array type of byte
             byte[] hash = digest.digest(input.getBytes("UTF-8"));
 
             StringBuffer hexString = new StringBuffer();
@@ -24,8 +23,8 @@ public class StringUtil {
                 String hex = Ingeter.toHexString(0xff & hash[i]);
                 if (hex.length() == 1) {
                     hexString.append('0');
-                    hexString.append(hex);
                 }
+                hexString.append(hex);
             }
             return hexString.toString();
         }
@@ -34,12 +33,11 @@ public class StringUtil {
         }
     }   
 
-    //
+    //turn Object into json string
     public static String getJson(Object o) {
         return new GsonBuilder().setPrettyPrinting().create().toJson(o);
     }
 
-    //
     public static String getDifficultyString(int difficulty) {
         return new String(new char[difficulty]).replace('\0','0');
     }

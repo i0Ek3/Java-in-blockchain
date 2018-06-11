@@ -29,7 +29,7 @@ public class Javachain {
         //hold on...what mean of this line? The author said that json package what....?
         //later....
         String blockchainJson = StringUtil.getJson(blockchain) ;
-        Syetem.out.println("\nThe block chain: ");
+        Syetem.out.println("\nThe blockchain: ");
         Syetem.out.println(blockchainJson);
     }
 
