@@ -4,7 +4,7 @@
 // 2018-06-05 20:56:25
 // 
  
-package javachian;
+package javachain;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,17 +22,20 @@ public class Javachian {
     public static Transaction genesisTransaction;
 
     public static void main(String[] args) {
+        // add blocks to the blockchain ArrayList
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
+        // Create wallet
         walletA = new Wallet();
         walletB = new Wallet();
         Wallet coinbase = new Wallet();
 
+        // Create genisis transaction
         genesisTransaction = new Transaction(coinbase.publicKey, walletA.publicKey, 100f, null);
         genesisTransaction.generateSignature(coinbase.privateKey);
         genesisTransaction.transactionId = "0";
         genesisTransaction.outputs.add(new TransactionOutput(genesisTransaction.reciepient, genesisTransaction.value, genesisTransaction.transactionId));
-        UTXOs.put(genesisTransaction.outputs.get(0));
+        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)) ;
 
         System.out.println("Creating and mining genesis block...");
         Block genesis = new Blokc("0");

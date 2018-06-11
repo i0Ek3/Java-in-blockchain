@@ -1,5 +1,5 @@
-package javachain;
 
+package javachain;
 import java.util.ArrayList; // new to added
 import java.util.Date;
 
@@ -8,14 +8,12 @@ public class Block {
     public String hash;
     public String previousHash;
     
-    /* change String data to ArrayList<Transcation> transcation
-     *
-     *
-     */
+    // change String data to ArrayList<Transcation> transcation
     public ArrayList<Transcation> transcations = new ArrayList<Transcation>(); 
     public long timeStamp;
-    public int nonce;
+    public int nonce; // de-randomNumber
 
+    // Block constructor()
     public Block(String previousHash) { // move data from Part1
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
