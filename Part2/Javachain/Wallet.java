@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Wallet {
 
-    public PrivateKey parivateKey;
+    public PrivateKey privateKey;
     public PublicKey publicKey;
     public HashMap<String, TransactionOutput> UTXOs = new HashMap<String, TransactionOutput>();
 
@@ -30,7 +30,7 @@ public class Wallet {
             KeyPair keyPair = keyGen.generateKeyPair();
             privateKey = keyPair.getPrivate();
             publicKey = keyPair.getPublic();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }    
@@ -47,7 +47,7 @@ public class Wallet {
         return total;
     }    
 
-    public Transaction sendFunds(PublicKey _reciepient, float value) {
+    public Transaction sendFunds(PublicKey _recipient, float value) {
         if (getBalance() < value) {
             System.out.println("!!Not enough funds to tansaction, transaction discarded!!");
             return null;
@@ -65,7 +65,7 @@ public class Wallet {
             }
         }
 
-        Transaction newTransaction = new Transaction(publicKey, _reciepient, value, inputs);
+        Transaction newTransaction = new Transaction(publicKey, _recipient, value, inputs);
         newTransaction.generateSignature(privateKey);
 
         for (TransactionInput input : inputs) {

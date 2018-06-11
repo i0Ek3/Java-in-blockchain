@@ -13,18 +13,18 @@ import java.util.ArrayList;
 public class Transaction {
     
     public String transactionId;
-    public PublicKey sender, reciepient;
+    public PublicKey sender, recipient;
     public float value;
     public byte[] signature;
 
     public ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
-    public ArrayList<TransactionOutput> inputs = new ArrayList<TransactionOutput>();
+    public ArrayList<TransactionOutput> outputs = new ArrayList<TransactionOutput>();
 
     private static int sequence = 0;
 
     public Transaction(PublicKey from, PublicKey to, float value, ArrayList<TransactionInput> inputs) {
         this.sender = from;
-        this.reciepient = to;
+        this.recipient = to;
         this.value = value;
         this.inputs = inputs;
     }
@@ -37,11 +37,11 @@ public class Transaction {
         }
 
         for (TransactionInput i : inputs) {
-            i.UTXO = Javachain.UTXOs.get(i.TransactionOutputId);
+            i.UTXO = Javachain.UTXOs.get(i.transactionOutputId);
         }
 
         if (getInputsValue() < Javachain.minimumTransaction) {
-            System.out.println("Transaction Inputs too small: " + getInputsValue());
+            System.out.println("Transaction inputs too small: " + getInputsValue());
             System.out.println("Please enter the amount greater than " + Javachain.minimumTransaction);
             return false;
         }
@@ -61,7 +61,6 @@ public class Transaction {
             }
             Javachain.UTXOs.remove(i.UTXO.id);
         }
-
         return true;
     }
 
@@ -77,12 +76,12 @@ public class Transaction {
     }   
 
     public void generateSignature(PrivateKey privateKey) {
-        String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(reciepient) + Float.toStting(value);
+        String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(recipient) + Float.toStting(value);
         signature = StringUtil.applyECDSASig(privateKey, data);
     }
 
     public boolean verifySignature() {
-        String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(reciepient) + Float.toString(value);
+        String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(recipient) + Float.toString(value);
         return StringUtil.verifyECDSASig(sender, data, signature); 
     }
 
@@ -98,7 +97,7 @@ public class Transaction {
         sequence++;
         return StringUtil.applySha256(
                 StringUtil.getStringFromKey(sender) + 
-                StringUtil.getStringFromKey(reciepient) + 
+                StringUtil.getStringFromKey(recipient) + 
                 Float.toString(value) + sequence 
                 );
     }

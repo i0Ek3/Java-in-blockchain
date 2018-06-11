@@ -17,7 +17,7 @@ public class TransactionOutput {
         this.reciepient = reciepient;
         this.value = value;
         this.parentTransactionId = parentTransactionId;
-        this.id = id;
+        this.id = StringUtil.applySha256(StringUtil.getStringFromKey(reciepient) + Float.toString(value) + parentTransactionId);
     }
 
     public boolean isMined(PublicKey publicKey) {
