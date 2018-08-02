@@ -13,6 +13,7 @@ import java.util.Map;
 public class Javachian {
 
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
+    //事务输出UTXO
     public static HashMap<String, TransactionOutput> UTXOs = new HashMap<String, TransactionOutput>();
 
     public static int difficulty = 3; 

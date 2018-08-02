@@ -8,7 +8,7 @@ package javachain;
 
 public class TransactionInput {
     public String transactionOutputId;
-    public TransactionOutput UTXO;
+    public TransactionOutput UTXO; //事务输出UTXO
 
     public TransactionInput(String transactionOutputId) {
         this.transactionOutputId = transactionOutputId;

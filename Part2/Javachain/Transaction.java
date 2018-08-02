@@ -37,6 +37,7 @@ public class Transaction {
         }
 
         for (TransactionInput i : inputs) {
+            //事务输出UTXO
             i.UTXO = Javachain.UTXOs.get(i.transactionOutputId);
         }
 

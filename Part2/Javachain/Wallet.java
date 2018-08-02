@@ -15,6 +15,7 @@ public class Wallet {
 
     public PrivateKey privateKey;
     public PublicKey publicKey;
+    //事务输出UTXO
     public HashMap<String, TransactionOutput> UTXOs = new HashMap<String, TransactionOutput>();
 
     public Wallet() {
