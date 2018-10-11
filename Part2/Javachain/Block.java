@@ -9,7 +9,7 @@ public class Block {
     public String previousHash;
     
     // change String data to ArrayList<Transcation> transcation
-    public ArrayList<Transcation> transcations = new ArrayList<Transcation>(); 
+    public ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     public long timeStamp;
     public int nonce; // de-randomNumber
 
@@ -31,7 +31,7 @@ public class Block {
     }
 
     public void mineBlock(int difficulty) {
-        merkleRoot = StringUtil.getMerkleRoot(transcations); // new to added
+        merkleRoot = StringUtil.getMerkleRoot(transactions); // new to added
         String target = StringUtil.getDifficultyString(difficulty);
         while (!hash.substring(0, difficulty).equals(target)) {
             nonce++;
@@ -40,19 +40,19 @@ public class Block {
         System.out.println("Block mined! : " + hash);
     }
 
-    public boolean addTranscation(Transaction transcation) { // judge the transcation whether added successfully.
-        if (transcation == null) {
+    public boolean addTransaction(Transaction transaction) { // judge the transaction whether added successfully.
+        if (transaction == null) {
             return fasle;
         }
         if ((!"0".equals.(previoushHash))) {
-            if ((transcation.processTranscation() != true)) {
-                System.out.println("Transcation failed to process. Discarded!");
+            if ((transaction.processTransaction() != true)) {
+                System.out.println("Transaction failed to process. Discarded!");
                 return false;
             }
         }
 
-        transcations.add(transcation);
-        System.out.println("Transcation Successfully added to Block!"); 
+        transactions.add(transaction);
+        System.out.println("Transaction Successfully added to Block!");
         return true;
     }
 }
